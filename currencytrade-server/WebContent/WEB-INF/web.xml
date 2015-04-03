@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
-  <display-name>currencytrade-server</display-name>
+  <display-name>cf-server</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
@@ -9,14 +9,12 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
   <servlet>
     <servlet-name>Jersey REST Service</servlet-name>
     <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
-     <!-- Register resources and providers under com.vogella.jersey.first package. -->
     <init-param>
-        <param-name>jersey.config.server.provider.packages</param-name>
-        <param-value>com.currencytrade.remote.rest,com.currencytrade.model</param-value>
+      <param-name>jersey.config.server.provider.packages</param-name>
+      <param-value>com.cf.remote.rest,com.cf.model</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
@@ -24,25 +22,24 @@
     <servlet-name>Jersey REST Service</servlet-name>
     <url-pattern>/rest/*</url-pattern>
   </servlet-mapping>
-  
   <filter>
     <filter-name>RateLimitFilter</filter-name>
-    <filter-class>com.currencytrade.filter.RateLimitFilter</filter-class>
+    <filter-class>com.cf.filter.RateLimitFilter</filter-class>
     <init-param>
-        <param-name>rate</param-name>
-        <param-value>3</param-value>
+      <param-name>rate</param-name>
+      <param-value>3</param-value>
     </init-param>
     <init-param>
-        <param-name>cleaner-delay</param-name>
-        <param-value>5</param-value>
+      <param-name>cleaner-delay</param-name>
+      <param-value>5</param-value>
     </init-param>
     <init-param>
-        <param-name>cleaner-period</param-name>
-        <param-value>10</param-value>
+      <param-name>cleaner-period</param-name>
+      <param-value>10</param-value>
     </init-param>
-	</filter>
-	<filter-mapping>
-	    <filter-name>RateLimitFilter</filter-name>
-	    <url-pattern>/*</url-pattern>
-	</filter-mapping>
+  </filter>
+  <filter-mapping>
+    <filter-name>RateLimitFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
 </web-app>
