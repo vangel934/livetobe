@@ -26,8 +26,12 @@
     <filter-name>RateLimitFilter</filter-name>
     <filter-class>com.cf.filter.RateLimitFilter</filter-class>
     <init-param>
-      <param-name>rate</param-name>
+      <param-name>rate-user</param-name>
       <param-value>3</param-value>
+    </init-param>
+    <init-param>
+      <param-name>rate-total</param-name>
+      <param-value>30</param-value>
     </init-param>
     <init-param>
       <param-name>cleaner-delay</param-name>
